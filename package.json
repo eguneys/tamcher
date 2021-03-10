@@ -1,12 +1,15 @@
 {
   "name": "stedon",
   "version": "1.0.0",
-  "main": "index.js",
+  "include": ["src/*.ts"],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf lib && tsc",
     "test": "yarn -s build && node ./bin/test"
   },
+  "prepublish": "yarn build",
   "devDependencies": {
     "typescript": "^4.2.3"
   }
