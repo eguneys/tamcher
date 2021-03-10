@@ -1,0 +1,13 @@
+{
+  "name": "stedon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "test": "yarn -s build && node ./bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
