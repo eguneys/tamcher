@@ -1,16 +1,20 @@
 {
   "name": "stedon",
   "version": "1.0.0",
-  "include": ["src/*.ts"],
+  "include": [
+    "src/*.ts"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
+    "watch": "tsc-watch --onSuccess 'node /bin/test'",
     "build": "rm -rf lib && tsc",
     "test": "yarn -s build && node ./bin/test"
   },
   "prepublish": "yarn build",
   "devDependencies": {
+    "tsc-watch": "^4.2.9",
     "typescript": "^4.2.3"
   }
 }
