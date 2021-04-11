@@ -1,5 +1,5 @@
 {
-  "name": "stedon",
+  "name": "stedavon",
   "version": "1.0.0",
   "include": [
     "src/*.ts"
@@ -8,12 +8,14 @@
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "watch": "tsc-watch --onSuccess 'node /bin/test'",
+    "watch": "tsc-watch --onSuccess 'ava'",
     "build": "rm -rf lib && tsc",
-    "test": "yarn -s build && node ./bin/test"
+    "test": "yarn -s build && ava",
+    "ava": "ava"
   },
   "prepublish": "yarn build",
   "devDependencies": {
+    "ava": "^3.15.0",
     "tsc-watch": "^4.2.9",
     "typescript": "^4.2.3"
   }
