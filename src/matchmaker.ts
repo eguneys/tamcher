@@ -9,6 +9,10 @@ export function fSecond<B>(_: Array<B>): B {
   return _[1];
 }
 
+export function fLast<B>(_: Array<B>): B {
+  return _[2];
+}
+
 export function oneMatcherNode(tpe: tt.OneMatcherType):
 (value: tt.OneMatcherValue) => tt.OneMatcherNode {
   return function(value: tt.OneMatcherValue) {
@@ -28,11 +32,23 @@ export const mpass = function(rest: string): tt.Maybe<tt.MatcherResult> {
   };
 }
 
-export const mlookAheadSpace = function(rest: string): tt.Maybe<tt.MatcherResult> {
-  if (rest[0] === ' ') {
-    return {
-      rest,
-      acc: noneMatcherNode
+export function mrec(data: () => tt.Matcher): tt.Matcher {
+  return function(rest: string): tt.Maybe<tt.MatcherResult> {
+    let _matcher = data();
+    let _res = _matcher(rest);
+
+    return _res;
+  };  
+}
+
+export function mlookahead(data: RegExp): tt.Matcher {
+  return function(rest: string): tt.Maybe<tt.MatcherResult> {
+    let m = rest.match(data);
+    if (m) {
+      return {
+        rest,
+        acc: noneMatcherNode
+      }
     }
   }
 }
@@ -77,15 +93,20 @@ export function mstar(data: tt.Matcher): tt.Matcher {
 
     while (true) {
       let _res = _matcher(rest);
+
       if (!_res) {
         break;
       }
 
       let { acc: _acc, rest: _rest } = _res;
 
+      if (rest === _rest) {
+        break;
+      }
+      
       rest = _rest;
       accs.push(_acc);
-
+      
       if (rest.length === 0) {
         break;
       }

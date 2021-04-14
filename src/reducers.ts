@@ -10,6 +10,12 @@ export const fFirstTwo = (tpe: tt.OneMatcherType): SequenceReducer => {
 export const fLastTwo = (tpe: tt.OneMatcherType): SequenceReducer => {
   return fSliceTriple(tpe, 1, 3);
 }
+export const fLast = (tpe: tt.OneMatcherType): SequenceReducer => {
+  return fSliceTriple(tpe, 2, 3);
+}
+export const fFirst = (tpe: tt.OneMatcherType): SequenceReducer => {
+  return fSliceTriple(tpe, 0, 1);
+}
 
 export const fAll = (tpe: tt.OneMatcherType): SequenceReducer => {
   return fSliceTriple(tpe, 0, 3);
@@ -21,6 +27,7 @@ export function fSliceTriple(tpe: tt.OneMatcherType, s: number, e: number): Sequ
   }
 }
 
+export const fFirstAndThird = fReduceOneAndThree;
 export const fOneAndThree = fReduceOneAndThree;
 
 export function fReduceOneAndThree(tpe: tt.OneMatcherType): SequenceReducer {

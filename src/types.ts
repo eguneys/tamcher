@@ -22,4 +22,5 @@ export type MatcherResult = {
   acc: OneMatcherValue
 }
 
-export type Matcher = (rest: string) => Maybe<MatcherResult>
+export type Matcher = (rest: string) => Maybe<MatcherResult>;
+
